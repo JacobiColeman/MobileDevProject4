@@ -61,20 +61,6 @@ public class StateProjectDBHelper extends SQLiteOpenHelper {
                     + STATE_QUIZ_COLUMN_QUESTIONS_ANSWERED + "INTEGER "
                     + ")";
 
-    private static final String CREATE_JOBLEADS =
-            "create table " + TABLE_STATEQUIZ + " ("
-                    + STATE_QUIZ_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                    + STATE_QUIZ_COLUMN_DATE + " TEXT, "
-                    + STATE_QUIZ_COLUMN_Q1 + " TEXT, "
-                    + STATE_QUIZ_COLUMN_Q2 + " TEXT, "
-                    + STATE_QUIZ_COLUMN_Q3 + " TEXT"
-                    + STATE_QUIZ_COLUMN_Q4 + "TEXT, "
-                    + STATE_QUIZ_COLUMN_Q5 + "TEXT, "
-                    + STATE_QUIZ_COLUMN_Q6 + "TEXT, "
-                    + STATE_QUIZ_COLUMN_NUMCORRECT + "INTEGER, "
-                    + STATE_QUIZ_COLUMN_QUESTIONS_ANSWERED + "INTEGER "
-                    + ")";
-
 
     private StateProjectDBHelper(Context context ) {
         super( context, DB_NAME, null, DB_VERSION );
