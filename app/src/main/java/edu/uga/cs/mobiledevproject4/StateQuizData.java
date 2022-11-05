@@ -18,27 +18,40 @@ public class StateQuizData {
     private SQLiteDatabase   db;
     private SQLiteOpenHelper stateProjectDbHelper;
     private static final String[] allColumns = {
-            JobLeadsDBHelper.JOBLEADS_COLUMN_ID,
-            JobLeadsDBHelper.JOBLEADS_COLUMN_NAME,
-            JobLeadsDBHelper.JOBLEADS_COLUMN_PHONE,
-            JobLeadsDBHelper.JOBLEADS_COLUMN_URL,
-            JobLeadsDBHelper.JOBLEADS_COLUMN_COMMENTS
+            StateProjectDBHelper.PROJECTSTATES_COLUMN_STATE,
+            StateProjectDBHelper.PROJECTSTATES_COLUMN_CAPITAL_CITY,
+            StateProjectDBHelper.PROJECTSTATES_COLUMN_SECOND_CITY,
+            StateProjectDBHelper.PROJECTSTATES_COLUMN_THIRD_CITY,
+            StateProjectDBHelper.PROJECTSTATES_COLUMN_STATEHOOD,
+            StateProjectDBHelper.PROJECTSTATES_COLUMN_CAPITAL_SINCE,
+            StateProjectDBHelper.PROJECTSTATES_COLUMN_CAPITAL_RANK,
+
+            StateProjectDBHelper.STATE_QUIZ_COLUMN_ID,
+            StateProjectDBHelper.STATE_QUIZ_COLUMN_DATE,
+            StateProjectDBHelper.STATE_QUIZ_COLUMN_Q1,
+            StateProjectDBHelper.STATE_QUIZ_COLUMN_Q2,
+            StateProjectDBHelper.STATE_QUIZ_COLUMN_Q3,
+            StateProjectDBHelper.STATE_QUIZ_COLUMN_Q4,
+            StateProjectDBHelper.STATE_QUIZ_COLUMN_Q5,
+            StateProjectDBHelper.STATE_QUIZ_COLUMN_Q6,
+            StateProjectDBHelper.STATE_QUIZ_COLUMN_NUMCORRECT,
+            StateProjectDBHelper.STATE_QUIZ_COLUMN_QUESTIONS_ANSWERED,
     };
 
     public JobLeadsData( Context context ) {
-        this.jobLeadsDbHelper = JobLeadsDBHelper.getInstance( context );
+        this.stateProjectDbHelper = StateProjectDBHelper.getInstance( context );
     }
 
     // Open the database
     public void open() {
-        db = jobLeadsDbHelper.getWritableDatabase();
+        db = stateProjectDbHelper.getWritableDatabase();
         Log.d( DEBUG_TAG, "JobLeadsData: db open" );
     }
 
     // Close the database
     public void close() {
-        if( jobLeadsDbHelper != null ) {
-            jobLeadsDbHelper.close();
+        if( stateProjectDbHelper != null ) {
+            stateProjectDbHelper.close();
             Log.d(DEBUG_TAG, "JobLeadsData: db closed");
         }
     }
@@ -58,7 +71,7 @@ public class StateQuizData {
 
         try {
             // Execute the select query and get the Cursor to iterate over the retrieved rows
-            cursor = db.query( JobLeadsDBHelper.TABLE_JOBLEADS, allColumns,
+            cursor = db.query(StateProjectDBHelper.TABLE_JOBLEADS, allColumns,
                     null, null, null, null, null );
 
             // collect all job leads into a List
@@ -69,15 +82,15 @@ public class StateQuizData {
                     if( cursor.getColumnCount() >= 5) {
 
                         // get all attribute values of this job lead
-                        columnIndex = cursor.getColumnIndex( JobLeadsDBHelper.JOBLEADS_COLUMN_ID );
+                        columnIndex = cursor.getColumnIndex( StateProjectDBHelper.JOBLEADS_COLUMN_ID );
                         long id = cursor.getLong( columnIndex );
-                        columnIndex = cursor.getColumnIndex( JobLeadsDBHelper.JOBLEADS_COLUMN_NAME );
+                        columnIndex = cursor.getColumnIndex( StateProjectDBHelper.JOBLEADS_COLUMN_NAME );
                         String name = cursor.getString( columnIndex );
-                        columnIndex = cursor.getColumnIndex( JobLeadsDBHelper.JOBLEADS_COLUMN_PHONE );
+                        columnIndex = cursor.getColumnIndex( StateProjectDBHelper.JOBLEADS_COLUMN_PHONE );
                         String phone = cursor.getString( columnIndex );
-                        columnIndex = cursor.getColumnIndex( JobLeadsDBHelper.JOBLEADS_COLUMN_URL );
+                        columnIndex = cursor.getColumnIndex( StateProjectDBHelper.JOBLEADS_COLUMN_URL );
                         String uri = cursor.getString( columnIndex );
-                        columnIndex = cursor.getColumnIndex( JobLeadsDBHelper.JOBLEADS_COLUMN_COMMENTS );
+                        columnIndex = cursor.getColumnIndex( StateProjectDBHelper.JOBLEADS_COLUMN_COMMENTS );
                         String comments = cursor.getString( columnIndex );
 
                         // create a new JobLead object and set its state to the retrieved values
@@ -115,15 +128,15 @@ public class StateQuizData {
         // This is how we are providing persistence to a JobLead (Java object) instance
         // by storing it as a new row in the database table representing job leads.
         ContentValues values = new ContentValues();
-        values.put( JobLeadsDBHelper.JOBLEADS_COLUMN_NAME, jobLead.getCompanyName());
-        values.put( JobLeadsDBHelper.JOBLEADS_COLUMN_PHONE, jobLead.getPhone() );
-        values.put( JobLeadsDBHelper.JOBLEADS_COLUMN_URL, jobLead.getUrl() );
-        values.put( JobLeadsDBHelper.JOBLEADS_COLUMN_COMMENTS, jobLead.getComments() );
+        values.put( StateProjectDBHelper.JOBLEADS_COLUMN_NAME, jobLead.getCompanyName());
+        values.put( StateProjectDBHelper.JOBLEADS_COLUMN_PHONE, jobLead.getPhone() );
+        values.put( StateProjectDBHelper.JOBLEADS_COLUMN_URL, jobLead.getUrl() );
+        values.put( StateProjectDBHelper.JOBLEADS_COLUMN_COMMENTS, jobLead.getComments() );
 
         // Insert the new row into the database table;
         // The id (primary key) is automatically generated by the database system
         // and returned as from the insert method call.
-        long id = db.insert( JobLeadsDBHelper.TABLE_JOBLEADS, null, values );
+        long id = db.insert( StateProjectDBHelper.TABLE_JOBLEADS, null, values );
 
         // store the id (the primary key) in the JobLead instance, as it is now persistent
         jobLead.setId( id );
@@ -135,29 +148,3 @@ public class StateQuizData {
 
 
 }
-
-
-
-
-    private static final String[] allColumns = {
-            StateProjectDBHelper.PROJECT4_COLUMN_STATE,
-            StateProjectDBHelper.PROJECT4_COLUMN_CAPITAL_CITY,
-            StateProjectDBHelper.PROJECT4_COLUMN_SECOND_CITY,
-            StateProjectDBHelper.PROJECT4_COLUMN_THIRD_CITY,
-            StateProjectDBHelper.PROJECT4_COLUMN_STATEHOOD,
-            StateProjectDBHelper.PROJECT4_COLUMN_CAPITAL_SINCE,
-            StateProjectDBHelper.PROJECT4_COLUMN_CAPITAL_RANK,
-
-            StateProjectDBHelper.STATE_QUIZ_COLUMN_ID,
-            StateProjectDBHelper.STATE_QUIZ_COLUMN_DATE,
-            StateProjectDBHelper.STATE_QUIZ_COLUMN_Q1,
-            StateProjectDBHelper.STATE_QUIZ_COLUMN_Q2,
-            StateProjectDBHelper.STATE_QUIZ_COLUMN_Q3,
-            StateProjectDBHelper.STATE_QUIZ_COLUMN_Q4,
-            StateProjectDBHelper.STATE_QUIZ_COLUMN_Q5,
-            StateProjectDBHelper.STATE_QUIZ_COLUMN_Q6,
-            StateProjectDBHelper.STATE_QUIZ_COLUMN_NUMCORRECT,
-            StateProjectDBHelper.STATE_QUIZ_COLUMN_QUESTIONS_ANSWERED,
-
-
-    };
