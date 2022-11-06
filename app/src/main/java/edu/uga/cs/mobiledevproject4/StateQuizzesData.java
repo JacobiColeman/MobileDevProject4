@@ -117,9 +117,9 @@ public class StateQuizzesData {
                         columnIndex = cursor.getColumnIndex( StateProjectDBHelper.STATE_QUIZ_COLUMN_Q6B );
                         String questionSixTF = cursor.getString( columnIndex );
                         columnIndex = cursor.getColumnIndex( StateProjectDBHelper.STATE_QUIZ_COLUMN_NUMCORRECT );
-                        Integer numCorrect = cursor.getString( columnIndex );
+                        Integer numCorrect = cursor.getInt( columnIndex );
                         columnIndex = cursor.getColumnIndex( StateProjectDBHelper.STATE_QUIZ_COLUMN_QUESTIONS_ANSWERED );
-                        Integer questionsAnswered = cursor.getString( columnIndex );
+                        Integer questionsAnswered = cursor.getInt( columnIndex );
 
 
                         // create a new StateQuiz object and set its state to the retrieved values
