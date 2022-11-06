@@ -71,7 +71,7 @@ public class StateQuizzesData {
     // This is how we restore persistent objects stored as rows in the job leads table in the database.
     // For each retrieved row, we create a new JobLead (Java POJO object) instance and add it to the list.
     public List<StateQuiz> retrieveAllStateQuizzes() {
-        ArrayList<StateQuiz> jobLeads = new ArrayList<>();
+        ArrayList<StateQuiz> stateQuizzes = new ArrayList<>();
         Cursor cursor = null;
         int columnIndex;
 
@@ -116,14 +116,20 @@ public class StateQuizzesData {
                         String questionFiveTF = cursor.getString( columnIndex );
                         columnIndex = cursor.getColumnIndex( StateProjectDBHelper.STATE_QUIZ_COLUMN_Q6B );
                         String questionSixTF = cursor.getString( columnIndex );
+                        columnIndex = cursor.getColumnIndex( StateProjectDBHelper.STATE_QUIZ_COLUMN_NUMCORRECT );
+                        Integer numCorrect = cursor.getString( columnIndex );
+                        columnIndex = cursor.getColumnIndex( StateProjectDBHelper.STATE_QUIZ_COLUMN_QUESTIONS_ANSWERED );
+                        Integer questionsAnswered = cursor.getString( columnIndex );
 
 
                         // create a new StateQuiz object and set its state to the retrieved values
-                        StateQuiz stateQuiz = new StateQuiz( date, questionOne , questionTwo, questionThree, questionFour, questionFive, questionSix, questionOneTF, questionTwoTF, questionThreeTF, questionFourTF, questionFiveTF, questionSixTF );
+                        StateQuiz stateQuiz = new StateQuiz( date, questionOne , questionTwo, questionThree, questionFour, questionFive,
+                                questionSix, questionOneTF, questionTwoTF, questionThreeTF, questionFourTF, questionFiveTF, questionSixTF,
+                                numCorrect, questionsAnswered );
                         stateQuiz.setId(id); // set the id (the primary key) of this object
                         // add it to the list
-                        stateQuiz.add( stateQuiz );
-                        Log.d(DEBUG_TAG, "Retrieved JobLead: " + stateQuiz);
+                        stateQuizzes.add( stateQuiz );
+                        Log.d(DEBUG_TAG, "Retrieved StateQuiz: " + stateQuiz);
                     }
                 }
             }
@@ -141,8 +147,8 @@ public class StateQuizzesData {
                 cursor.close();
             }
         }
-        // return a list of retrieved job leads
-        return statequiz;
+        // return a list of retrieved State Quizzes
+        return stateQuizzes;
     }
 
     // Store a new job lead in the database.
