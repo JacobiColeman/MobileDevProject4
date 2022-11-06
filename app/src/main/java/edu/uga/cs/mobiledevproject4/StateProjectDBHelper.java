@@ -27,23 +27,23 @@ public class StateProjectDBHelper extends SQLiteOpenHelper {
     public static final String PROJECTSTATES_COLUMN_CAPITAL_SINCE = "capital since";
     public static final String PROJECTSTATES_COLUMN_CAPITAL_RANK = "capital rank";
 
-    public static final String TABLE_STATEQUIZ = "state quiz";
+    public static final String TABLE_STATEQUIZ = "stateQuiz";
     public static final String STATE_QUIZ_COLUMN_ID = "_id";
     public static final String STATE_QUIZ_COLUMN_DATE = "date";
-    public static final String STATE_QUIZ_COLUMN_Q1A = "question one";
-    public static final String STATE_QUIZ_COLUMN_Q2A = "question two";
-    public static final String STATE_QUIZ_COLUMN_Q3A = "question three";
-    public static final String STATE_QUIZ_COLUMN_Q4A = "question four";
-    public static final String STATE_QUIZ_COLUMN_Q5A = "question five";
-    public static final String STATE_QUIZ_COLUMN_Q6A = "question six";
-    public static final String STATE_QUIZ_COLUMN_Q1B = "question oneTF";
-    public static final String STATE_QUIZ_COLUMN_Q2B = "question twoTF";
-    public static final String STATE_QUIZ_COLUMN_Q3B = "question threeTF";
-    public static final String STATE_QUIZ_COLUMN_Q4B = "question fourTF";
-    public static final String STATE_QUIZ_COLUMN_Q5B = "question fiveTF";
-    public static final String STATE_QUIZ_COLUMN_Q6B = "question sixTF";
-    public static final String STATE_QUIZ_COLUMN_NUMCORRECT = "number correct";
-    public static final String STATE_QUIZ_COLUMN_QUESTIONS_ANSWERED = "questions answered";
+    public static final String STATE_QUIZ_COLUMN_Q1A = "questionOne";
+    public static final String STATE_QUIZ_COLUMN_Q2A = "questionTwo";
+    public static final String STATE_QUIZ_COLUMN_Q3A = "questionThree";
+    public static final String STATE_QUIZ_COLUMN_Q4A = "questionFour";
+    public static final String STATE_QUIZ_COLUMN_Q5A = "questionFive";
+    public static final String STATE_QUIZ_COLUMN_Q6A = "questionSix";
+    public static final String STATE_QUIZ_COLUMN_Q1B = "questionOneTF";
+    public static final String STATE_QUIZ_COLUMN_Q2B = "questionTwoTF";
+    public static final String STATE_QUIZ_COLUMN_Q3B = "questionThreeTF";
+    public static final String STATE_QUIZ_COLUMN_Q4B = "questionFourTF";
+    public static final String STATE_QUIZ_COLUMN_Q5B = "questionFiveTF";
+    public static final String STATE_QUIZ_COLUMN_Q6B = "questionSixTF";
+    public static final String STATE_QUIZ_COLUMN_NUMCORRECT = "numberCorrect";
+    public static final String STATE_QUIZ_COLUMN_QUESTIONS_ANSWERED = "questionsAnswered";
 
     private static StateProjectDBHelper helperInstance;
 
@@ -111,3 +111,5 @@ public class StateProjectDBHelper extends SQLiteOpenHelper {
         Log.d( DEBUG_TAG, "Table " + TABLE_PROJECTSTATES + " upgraded" );
     }
 }
+//Add method GetCurrentQuiz
+//returns quiz w a blank finish time
