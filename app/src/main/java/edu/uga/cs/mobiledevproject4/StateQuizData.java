@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StateQuizData {
-
+    /*Noted out by yours truly - Zeke
     public static final String DEBUG_TAG = "StateQuizData";
 
     // this is a reference to our database; it is used later to run SQL commands
@@ -146,5 +146,5 @@ public class StateQuizData {
         return jobLead;
     }
 
-
+*/
 }

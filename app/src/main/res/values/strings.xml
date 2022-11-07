@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">MobileDevProject4</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="quiz_descript">This quiz is designed to test your knowledge regarding U.S. State Capitals. Each quiz iteration tests your knowledge on the capitals of 6 randomly chosen U.S.
+    States, with 2 questions given per state for a total of 12 questions, and 12 possible points to
+    score! For each pair, the first questions ask you to identify the capital of the given state,
+    and the second questions ask if the capital of the given state is the most populous city in that
+    state.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
