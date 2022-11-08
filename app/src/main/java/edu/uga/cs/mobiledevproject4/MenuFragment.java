@@ -1,5 +1,6 @@
 package edu.uga.cs.mobiledevproject4;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -96,12 +97,14 @@ public class MenuFragment extends Fragment {
     }
 
     public void executeQuiz() { //edit when you get db access, difference between new and resumed
-        Fragment qFragment = new QuizFragment(); // quizzes. Rn it just brings you to prototype
+        Intent qIntent = new Intent(getActivity(), QuizActivity.class);
+        getActivity().startActivity(qIntent);
+        /*Fragment qFragment = new QuizFragment(); // quizzes. Rn it just brings you to prototype
         FragmentManager fragmentManager = getParentFragmentManager();//quiz fragment
         fragmentManager.beginTransaction()
                 .replace(R.id.fragmentContainerView, qFragment, null)
                 .setReorderingAllowed(true)
                 .addToBackStack("name") // name can be null
-                .commit();
+                .commit();*/
     }
 }
