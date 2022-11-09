@@ -3,6 +3,7 @@ package edu.uga.cs.mobiledevproject4;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -37,5 +38,12 @@ public class QuizActivity extends AppCompatActivity {
         viewPager.setClipChildren(false);
         viewPager.setOffscreenPageLimit(2);
         viewPager.getChildAt(0).setOverScrollMode(View.OVER_SCROLL_NEVER);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent mIntent = new Intent(QuizActivity.this, MainActivity.class);
+        mIntent.putExtra("unfinished", true);
+        startActivity(mIntent);
     }
 }

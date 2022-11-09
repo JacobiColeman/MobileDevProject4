@@ -1,5 +1,6 @@
 package edu.uga.cs.mobiledevproject4;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +26,6 @@ public class QPAdapter extends RecyclerView.Adapter<QPAdapter.ViewHolder> {
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.quizpager_item, parent, false);
-
         return new ViewHolder(view);
     }
 
@@ -52,8 +52,13 @@ public class QPAdapter extends RecyclerView.Adapter<QPAdapter.ViewHolder> {
                     int finalScore = 0;
                     for (int i = 0; i < scorePerPage.size(); i++) {
                         finalScore = finalScore + scorePerPage.get(i);
+                        
                     }
                     System.out.println("You scored " + finalScore + " out of 12 goes here");//put score here for testing
+                    Intent fIntent = new Intent(view.getContext(), ResultsActivity.class);
+                    fIntent.putExtra("finish", true);
+                    fIntent.putExtra("score", finalScore);
+                    view.getContext().startActivity(fIntent);
                 }
             });
         }

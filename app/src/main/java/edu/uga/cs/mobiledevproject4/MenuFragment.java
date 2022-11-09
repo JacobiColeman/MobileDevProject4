@@ -73,12 +73,30 @@ public class MenuFragment extends Fragment {
         TextView quizDescript = menuView.findViewById(R.id.quiz_descript);
         InputStream inputStream = getResources().openRawResource(R.raw.quizdescription);
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+        Button newQzButtn = menuView.findViewById(R.id.newQzButton);
         Button resumeQzButtn = menuView.findViewById(R.id.resumeQzButton);
+        Button pRButton = menuView.findViewById(R.id.prevResultsButton);
+        newQzButtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                executeQuiz();
+                mA.unfinishedQuiz = true;
+            }
+        });
         resumeQzButtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 executeQuiz(); //add params when you get db access, should distinguish between
                 // new quiz and resumed quiz
+            }
+        });
+        pRButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent pIntent = new Intent(getActivity(), ResultsActivity.class);
+                pIntent.putExtra("finish", false);
+                pIntent.putExtra("keepMAVal", mA.unfinishedQuiz);
+                getActivity().startActivity(pIntent);
             }
         });
         if (!mA.unfinishedQuiz) {

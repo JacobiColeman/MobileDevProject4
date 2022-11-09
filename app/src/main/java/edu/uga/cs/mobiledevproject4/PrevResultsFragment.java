@@ -1,5 +1,6 @@
 package edu.uga.cs.mobiledevproject4;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,13 +8,15 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TableLayout;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link QuizFragment#newInstance} factory method to
+ * Use the {@link PrevResultsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class QuizFragment extends Fragment {
+public class PrevResultsFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,7 +27,7 @@ public class QuizFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public QuizFragment() {
+    public PrevResultsFragment() {
         // Required empty public constructor
     }
 
@@ -34,11 +37,11 @@ public class QuizFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment QuizFragment.
+     * @return A new instance of fragment PrevResultsFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static QuizFragment newInstance(String param1, String param2) {
-        QuizFragment fragment = new QuizFragment();
+    public static PrevResultsFragment newInstance(String param1, String param2) {
+        PrevResultsFragment fragment = new PrevResultsFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -58,7 +61,18 @@ public class QuizFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_quiz, container, false);
+        View pView = inflater.inflate(R.layout.fragment_prev_results, container, false);
+        TableLayout sTable = pView.findViewById(R.id.scoreTable);
+        Button retButton = pView.findViewById(R.id.retMenuButton);
+        retButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ResultsActivity rar = (ResultsActivity) getActivity();
+                Intent mIntent = new Intent(getActivity(), MainActivity.class);
+                mIntent.putExtra("unfinished", rar.keepVal);
+                getActivity().startActivity(mIntent);
+            }
+        });
+        return pView;
     }
 }
