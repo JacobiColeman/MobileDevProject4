@@ -28,6 +28,7 @@ public class StateQuizzesData {
 
             StateProjectDBHelper.STATE_QUIZ_COLUMN_ID,
             StateProjectDBHelper.STATE_QUIZ_COLUMN_DATE,
+            StateProjectDBHelper.STATE_QUIZ_COLUMN_TIME,
             StateProjectDBHelper.STATE_QUIZ_COLUMN_Q1A,
             StateProjectDBHelper.STATE_QUIZ_COLUMN_Q2A,
             StateProjectDBHelper.STATE_QUIZ_COLUMN_Q3A,
@@ -92,6 +93,8 @@ public class StateQuizzesData {
                         long id = cursor.getLong( columnIndex );
                         columnIndex = cursor.getColumnIndex( StateProjectDBHelper.STATE_QUIZ_COLUMN_DATE );
                         String date = cursor.getString( columnIndex );
+                        columnIndex = cursor.getColumnIndex( StateProjectDBHelper.STATE_QUIZ_COLUMN_TIME );
+                        String time = cursor.getString( columnIndex );
                         columnIndex = cursor.getColumnIndex( StateProjectDBHelper.STATE_QUIZ_COLUMN_Q1A );
                         String questionOne = cursor.getString( columnIndex );
                         columnIndex = cursor.getColumnIndex( StateProjectDBHelper.STATE_QUIZ_COLUMN_Q2A );
@@ -123,7 +126,7 @@ public class StateQuizzesData {
 
 
                         // create a new StateQuiz object and set its state to the retrieved values
-                        StateQuiz stateQuiz = new StateQuiz( date, questionOne , questionTwo, questionThree, questionFour, questionFive,
+                        StateQuiz stateQuiz = new StateQuiz( date, time, questionOne , questionTwo, questionThree, questionFour, questionFive,
                                 questionSix, questionOneTF, questionTwoTF, questionThreeTF, questionFourTF, questionFiveTF, questionSixTF,
                                 numCorrect, questionsAnswered );
                         stateQuiz.setId(id); // set the id (the primary key) of this object
@@ -160,6 +163,7 @@ public class StateQuizzesData {
         // by storing it as a new row in the database table representing job leads.
         ContentValues values = new ContentValues();
         values.put( StateProjectDBHelper.STATE_QUIZ_COLUMN_DATE, stateQuiz.getDate());
+        values.put( StateProjectDBHelper.STATE_QUIZ_COLUMN_TIME, stateQuiz.getTime());
         values.put( StateProjectDBHelper.STATE_QUIZ_COLUMN_Q1A, stateQuiz.getQuestionOne() );
         values.put( StateProjectDBHelper.STATE_QUIZ_COLUMN_Q2A, stateQuiz.getQuestionTwo() );
         values.put( StateProjectDBHelper.STATE_QUIZ_COLUMN_Q3A, stateQuiz.getQuestionThree() );

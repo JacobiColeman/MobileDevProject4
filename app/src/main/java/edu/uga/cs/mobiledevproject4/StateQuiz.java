@@ -1,8 +1,16 @@
 package edu.uga.cs.mobiledevproject4;
 
+
+
+import com.opencsv.CSVReader;
+
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
 public class StateQuiz {
     private long   id;
     private String date;
+    private String time;
     private String questionOne;
     private String questionTwo;
     private String questionThree;
@@ -22,6 +30,7 @@ public class StateQuiz {
     {
         this.id = -1;
         this.date = null;
+        this.time = null;
         this.questionOne = null;
         this.questionTwo = null;
         this.questionThree = null;
@@ -38,9 +47,10 @@ public class StateQuiz {
         this.questionsAnswered = null;
     }
 
-    public StateQuiz( String date, String questionOne, String questionTwo, String questionThree, String questionFour, String questionFive, String questionSix, String questionOneTF, String questionTwoTF, String questionThreeTF, String questionFourTF, String questionFiveTF, String questionSixTF, Integer numCorrect, Integer questionsAnswered ) {
+    public StateQuiz( String date, String time, String questionOne, String questionTwo, String questionThree, String questionFour, String questionFive, String questionSix, String questionOneTF, String questionTwoTF, String questionThreeTF, String questionFourTF, String questionFiveTF, String questionSixTF, Integer numCorrect, Integer questionsAnswered ) {
         this.id = -1;  // the primary key id will be set by a setter method
         this.date = date;
+        this.time = time;
         this.questionOne = questionOne;
         this.questionTwo = questionTwo;
         this.questionThree = questionThree;
@@ -56,6 +66,7 @@ public class StateQuiz {
         this.numCorrect = numCorrect;
         this.questionsAnswered = questionsAnswered;
     }
+
 
     public long getId()
     {
@@ -75,6 +86,16 @@ public class StateQuiz {
     public void setDate(String date)
     {
         this.date = date;
+    }
+
+    public String getTime()
+    {
+        return time;
+    }
+
+    public void setTime(String time)
+    {
+        this.time = time;
     }
 
     public String getQuestionOne()
@@ -219,11 +240,14 @@ public class StateQuiz {
 
     public String toString()
     {
-        return id + ": " + date + " " + questionOne + " " + questionTwo + " " + questionThree + " " +
+        return id + ": " + date + " " + time + " " + questionOne + " " + questionTwo + " " + questionThree + " " +
                 questionFour + questionFive + " " + questionSix + " " + questionOneTF + " " + questionTwoTF +
                 questionThreeTF + " " + questionFourTF + " " + questionFiveTF + " " + questionSixTF + numCorrect + " " +
                 questionsAnswered;
     }
+
+
+
 }
 
 
