@@ -23,6 +23,7 @@ public class StateProjectDBHelper extends SQLiteOpenHelper {
 
 
     public static final String TABLE_PROJECTSTATES = "States";
+    public static final String PROJECTSTATES_COLUMN_ID = "_id";
     public static final String PROJECTSTATES_COLUMN_STATE = "state";
     public static final String PROJECTSTATES_COLUMN_CAPITAL_CITY = "capital city";
     public static final String PROJECTSTATES_COLUMN_SECOND_CITY = "second city";
@@ -53,19 +54,21 @@ public class StateProjectDBHelper extends SQLiteOpenHelper {
     private static StateProjectDBHelper helperInstance;
 
     private static final String CREATE_PROJECTSTATES =
-              "create table " + TABLE_PROJECTSTATES + " ("
-            + PROJECTSTATES_COLUMN_STATE + "TEXT PRIMARY KEY, "
-            + PROJECTSTATES_COLUMN_CAPITAL_CITY + "TEXT, "
-            + PROJECTSTATES_COLUMN_SECOND_CITY + "TEXT, "
-            + PROJECTSTATES_COLUMN_THIRD_CITY + "TEXT, "
-            + PROJECTSTATES_COLUMN_STATEHOOD + "TEXT, "
-            + PROJECTSTATES_COLUMN_CAPITAL_SINCE + "TEXT,"
-            + PROJECTSTATES_COLUMN_CAPITAL_RANK + "INTEGER "
-            + ")";
+            "create table " + TABLE_PROJECTSTATES + " ("
+                    + PROJECTSTATES_COLUMN_ID + "INTEGER PRIMARY KEY AUTOINCREMENT, "
+                    + PROJECTSTATES_COLUMN_STATE + "TEXT, "
+                    + PROJECTSTATES_COLUMN_CAPITAL_CITY + "TEXT, "
+                    + PROJECTSTATES_COLUMN_SECOND_CITY + "TEXT, "
+                    + PROJECTSTATES_COLUMN_THIRD_CITY + "TEXT, "
+                    + PROJECTSTATES_COLUMN_STATEHOOD + "TEXT, "
+                    + PROJECTSTATES_COLUMN_CAPITAL_SINCE + "TEXT,"
+                    + PROJECTSTATES_COLUMN_CAPITAL_RANK + "INTEGER "
+                    + ")";
+
 
     private static final String CREATE_STATEQUIZ =
             "create table " + TABLE_STATEQUIZ + " ( "
-                    + STATE_QUIZ_COLUMN_ID  + "INTEGER PRIMARY KEY AUTOINCREMENT, "
+                    + STATE_QUIZ_COLUMN_ID + "INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + STATE_QUIZ_COLUMN_DATE + "TEXT, "
                     + STATE_QUIZ_COLUMN_TIME + "TEXT, "
                     + STATE_QUIZ_COLUMN_Q1A + "TEXT, "
@@ -86,19 +89,20 @@ public class StateProjectDBHelper extends SQLiteOpenHelper {
 
     private Context appContext;
 
-    private StateProjectDBHelper(Context context ) {
-        super( context, DB_NAME, null, DB_VERSION );
+    private StateProjectDBHelper(Context context) {
+        super(context, DB_NAME, null, DB_VERSION);
         this.appContext = context;
     }
 
 
-    public static synchronized StateProjectDBHelper getInstance(Context context ) {
+    public static synchronized StateProjectDBHelper getInstance(Context context) {
 
-        if( helperInstance == null ) {
-            helperInstance = new StateProjectDBHelper( context.getApplicationContext() );
+        if (helperInstance == null) {
+            helperInstance = new StateProjectDBHelper(context.getApplicationContext());
         }
         return helperInstance;
     }
+
 
 
     @Override
@@ -138,13 +142,7 @@ public class StateProjectDBHelper extends SQLiteOpenHelper {
         } catch (Exception e) {
             Log.e( DEBUG_TAG, e.toString() );
         } // catch error
-        Log.d( DEBUG_TAG, "Table " + TABLE_PROJECTSTATES + " created" );
-        // QuizDBHelper onCreate()
-
-        // We should override onUpgrade method, which will be used to upgrade the database if
-        // its version (DB_VERSION) has changed.  This will be done automatically by Android
-        // if the version will be bumped up, as we modify the database schema.
-
+        Log.d(DEBUG_TAG, "Table " + TABLE_PROJECTSTATES + " created");
 
         db.execSQL(CREATE_STATEQUIZ);
         Log.d(DEBUG_TAG, "Table " + TABLE_STATEQUIZ + " created");
@@ -162,5 +160,3 @@ public class StateProjectDBHelper extends SQLiteOpenHelper {
         Log.d( DEBUG_TAG, "Table " + TABLE_STATEQUIZ + " upgraded" );
     }
 }
-//Add method GetCurrentQuiz
-//returns quiz w a blank finish time

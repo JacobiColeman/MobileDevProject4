@@ -45,7 +45,7 @@ public class StateQuizzesData {
             StateProjectDBHelper.STATE_QUIZ_COLUMN_QUESTIONS_ANSWERED,
     };
 
-    public StateQuizzesData(Context context ) {
+    public StateQuizzesData( Context context ) {
         this.stateProjectDbHelper = StateProjectDBHelper.getInstance( context );
     }
 
