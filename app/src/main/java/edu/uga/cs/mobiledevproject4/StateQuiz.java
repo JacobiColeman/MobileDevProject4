@@ -2,12 +2,10 @@ package edu.uga.cs.mobiledevproject4;
 
 
 
-import com.opencsv.CSVReader;
 
-import java.io.InputStream;
-import java.io.InputStreamReader;
 
 public class StateQuiz {
+
     private long   id;
     private String date;
     private String time;
