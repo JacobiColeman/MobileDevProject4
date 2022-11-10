@@ -132,4 +132,5 @@ public class QPAdapter extends RecyclerView.Adapter<QPAdapter.ViewHolder> {
             popCs = itemView.findViewById(R.id.popChoices);
         }
     }
+
 }
